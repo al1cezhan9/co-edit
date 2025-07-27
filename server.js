@@ -1,12 +1,6 @@
 // backend server code
 require('dotenv').config({ path: '.env.local' });
 
-const path = require('path');
-app.use(express.static(path.join(__dirname, 'client/build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
 // import necessary modules
 const express = require('express');
 const http = require('http');
@@ -18,6 +12,12 @@ app.use(cors()); // allows front-end to communicate w/ backend w/o cross-origin 
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server }); // websocket on same port as HTTP server
+
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 let document = ""; // text doc
 
