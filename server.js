@@ -1,6 +1,11 @@
 // backend server code
 require('dotenv').config({ path: '.env.local' });
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 // import necessary modules
 const express = require('express');

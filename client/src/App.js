@@ -6,7 +6,12 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect (() => {
-    const newSocket = new WebSocket('ws://localhost:5000'); // connect to backend WebSocket server
+    // connect to backend WebSocket server
+    const newSocket = new WebSocket(
+      process.env.NODE_ENV === 'production'
+        ? `wss://${window.location.host}`
+        : 'ws://localhost:5000'
+    ); 
     setSocket(newSocket);
 
     newSocket.onopen = () => {  
