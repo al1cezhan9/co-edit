@@ -10,6 +10,7 @@ function App() {
     const newSocket = new WebSocket(
       process.env.NODE_ENV === 'production'
         ? `wss://${window.location.host}`
+        //? 'wss://co-edit-30de.onrender.com'
         : 'ws://localhost:5000'
     ); 
     setSocket(newSocket);
